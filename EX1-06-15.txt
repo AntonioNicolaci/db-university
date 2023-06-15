@@ -1,0 +1,50 @@
+1)
+SELECT 'students.*'
+FROM 'students'
+INNER JOIN 'degrees'
+ON 'students.degree_id' = 'degrees.id'
+AND 'degrees.name' = 'Corso di Laurea in Economia'
+
+2)
+SELECT 'degrees.*
+FROM 'degrees'
+INNER JOIN 'departments'
+ON degrees.department_id' = 'departments.id'
+AND 'departments.name' = 'Dipartimento di Neuroscienze'
+
+3)
+SELECT courses.*
+FROM 'courses'
+INNER JOIN 'course_teacher'
+ON courses.id' = 'course_teacher.course_id'
+AND 'course_teacher.teacher_id' = 41
+
+4)
+SELECT students.surname, students.name, degrees.*, departments.*
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+JOIN departments ON degrees.department_id = departments.id
+ORDER BY students.surname ASC
+
+5)
+SELECT *
+FROM degrees
+JOIN courses ON degrees.id = courses.degree_id
+JOIN course_teacher ON courses.id = course_teacher.course_id
+JOIN teachers ON teachers.id = course_teacher.teacher_id
+
+6)
+SELECT teachers.*, departments.name
+FROM departments
+JOIN degrees ON departments.id = degrees.department_id
+JOIN courses ON degrees.id = courses.degree_id
+JOIN course_teacher ON courses.id = course_teacher.course_id
+JOIN teachers ON teachers.id = course_teacher.teacher_id
+WHERE departments.name = 'Dipartimento di Matematica'
+
+7)
+SELECT *
+FROM students
+JOIN exam_student ON students.id = exam_student.student_id
+JOIN exams ON exam_student.exam_id = exams.id
+GROUP BY exams.course_id
